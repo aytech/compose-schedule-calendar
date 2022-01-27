@@ -4,9 +4,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -55,7 +53,8 @@ fun ScheduleCalendar(
 ) {
     state.updateView(viewSpan, constraints.maxWidth)
 
-    Column {
+    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+
         DaysRow(
             state = state,
             modifier = Modifier

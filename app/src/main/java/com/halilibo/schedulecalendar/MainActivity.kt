@@ -23,103 +23,301 @@ import com.halilibo.schedulecalendar.ui.theme.*
 import org.threeten.bp.LocalDateTime
 
 class MainActivity : ComponentActivity() {
-  @OptIn(ExperimentalAnimationApi::class)
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContent {
-      ScheduleCalendarTheme {
-        Scaffold {
-          Surface {
-            ScheduleCalendarDemo()
-          }
+    @OptIn(ExperimentalAnimationApi::class)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            ScheduleCalendarTheme {
+                Scaffold {
+                    Surface {
+                        ScheduleCalendarDemo()
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
 
 @Composable
 fun ScheduleCalendarDemo() {
-  val viewSpan = remember { mutableStateOf(48 * 3600L) }
-  val eventTimesVisible = remember { mutableStateOf(true) }
-  Column(modifier = Modifier.fillMaxHeight()) {
-    Row {
-      IconButton(onClick = {
-        viewSpan.value = (viewSpan.value * 2).coerceAtMost(96 * 3600)
-      }) {
-        Icon(imageVector = Icons.Default.ZoomOut, contentDescription = "increase")
-      }
-      Spacer(modifier = Modifier.width(8.dp))
-      IconButton(onClick = {
-        viewSpan.value = (viewSpan.value / 2).coerceAtLeast(3 * 3600)
-      }) {
-        Icon(imageVector = Icons.Default.ZoomIn, contentDescription = "decrease")
-      }
-      Spacer(modifier = Modifier.width(8.dp))
-      IconButton(onClick = {
-        eventTimesVisible.value = !(eventTimesVisible.value)
-      }) {
-        Icon(imageVector = Icons.Default.HideImage, contentDescription = "decrease")
-      }
-    }
+    val viewSpan = remember { mutableStateOf(48 * 3600L) }
+    val eventTimesVisible = remember { mutableStateOf(true) }
+    Column(modifier = Modifier.fillMaxHeight()) {
+        Row {
+            IconButton(onClick = {
+                viewSpan.value = (viewSpan.value * 2).coerceAtMost(96 * 3600)
+            }) {
+                Icon(imageVector = Icons.Default.ZoomOut, contentDescription = "increase")
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            IconButton(onClick = {
+                viewSpan.value = (viewSpan.value / 2).coerceAtLeast(3 * 3600)
+            }) {
+                Icon(imageVector = Icons.Default.ZoomIn, contentDescription = "decrease")
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            IconButton(onClick = {
+                eventTimesVisible.value = !(eventTimesVisible.value)
+            }) {
+                Icon(imageVector = Icons.Default.HideImage, contentDescription = "decrease")
+            }
+        }
 
-    val calendarState = rememberScheduleCalendarState()
+        val calendarState = rememberScheduleCalendarState()
 
-    Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
-    ScheduleCalendar(
-      state = calendarState,
-      now = LocalDateTime.now().plusHours(8),
-      eventTimesVisible = eventTimesVisible.value,
-      sections = listOf(
-        CalendarSection(
-          "Platform Schedule",
-          events = listOf(
-            CalendarEvent(
-              startDate = LocalDateTime.now().minusHours(6),
-              endDate = LocalDateTime.now().plusHours(12),
-              name = "Halil Ozercan",
-              description = "",
-              color = R500
+        ScheduleCalendar(
+            state = calendarState,
+            now = LocalDateTime.now().plusHours(8),
+            eventTimesVisible = eventTimesVisible.value,
+            sections = listOf(
+                CalendarSection(
+                    "Platform Schedule",
+                    events = listOf(
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().minusHours(6),
+                            endDate = LocalDateTime.now().plusHours(12),
+                            name = "Halil Ozercan",
+                            description = "",
+                            color = R500
+                        ),
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(24),
+                            endDate = LocalDateTime.now().plusHours(48),
+                            name = "And Ani Calik",
+                            description = "",
+                            color = G500
+                        )
+                    )
+                ),
+                CalendarSection(
+                    "Compose Schedule",
+                    events = listOf(
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(6),
+                            endDate = LocalDateTime.now().plusHours(12),
+                            name = "Halil Ozercan",
+                            description = "",
+                            color = Y500
+                        ),
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(17),
+                            endDate = LocalDateTime.now().plusHours(27),
+                            name = "Taha Kirca",
+                            description = "",
+                            color = B400
+                        )
+                    )
+                ), CalendarSection(
+                    "Compose Schedule",
+                    events = listOf(
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(6),
+                            endDate = LocalDateTime.now().plusHours(12),
+                            name = "Halil Ozercan",
+                            description = "",
+                            color = Y500
+                        ),
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(17),
+                            endDate = LocalDateTime.now().plusHours(27),
+                            name = "Taha Kirca",
+                            description = "",
+                            color = B400
+                        )
+                    )
+                ), CalendarSection(
+                    "Compose Schedule",
+                    events = listOf(
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(6),
+                            endDate = LocalDateTime.now().plusHours(12),
+                            name = "Halil Ozercan",
+                            description = "",
+                            color = Y500
+                        ),
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(17),
+                            endDate = LocalDateTime.now().plusHours(27),
+                            name = "Taha Kirca",
+                            description = "",
+                            color = B400
+                        )
+                    )
+                ), CalendarSection(
+                    "Compose Schedule",
+                    events = listOf(
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(6),
+                            endDate = LocalDateTime.now().plusHours(12),
+                            name = "Halil Ozercan",
+                            description = "",
+                            color = Y500
+                        ),
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(17),
+                            endDate = LocalDateTime.now().plusHours(27),
+                            name = "Taha Kirca",
+                            description = "",
+                            color = B400
+                        )
+                    )
+                ), CalendarSection(
+                    "Compose Schedule",
+                    events = listOf(
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(6),
+                            endDate = LocalDateTime.now().plusHours(12),
+                            name = "Halil Ozercan",
+                            description = "",
+                            color = Y500
+                        ),
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(17),
+                            endDate = LocalDateTime.now().plusHours(27),
+                            name = "Taha Kirca",
+                            description = "",
+                            color = B400
+                        )
+                    )
+                ), CalendarSection(
+                    "Compose Schedule",
+                    events = listOf(
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(6),
+                            endDate = LocalDateTime.now().plusHours(12),
+                            name = "Halil Ozercan",
+                            description = "",
+                            color = Y500
+                        ),
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(17),
+                            endDate = LocalDateTime.now().plusHours(27),
+                            name = "Taha Kirca",
+                            description = "",
+                            color = B400
+                        )
+                    )
+                ), CalendarSection(
+                    "Compose Schedule",
+                    events = listOf(
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(6),
+                            endDate = LocalDateTime.now().plusHours(12),
+                            name = "Halil Ozercan",
+                            description = "",
+                            color = Y500
+                        ),
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(17),
+                            endDate = LocalDateTime.now().plusHours(27),
+                            name = "Taha Kirca",
+                            description = "",
+                            color = B400
+                        )
+                    )
+                ), CalendarSection(
+                    "Compose Schedule",
+                    events = listOf(
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(6),
+                            endDate = LocalDateTime.now().plusHours(12),
+                            name = "Halil Ozercan",
+                            description = "",
+                            color = Y500
+                        ),
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(17),
+                            endDate = LocalDateTime.now().plusHours(27),
+                            name = "Taha Kirca",
+                            description = "",
+                            color = B400
+                        )
+                    )
+                ), CalendarSection(
+                    "Compose Schedule",
+                    events = listOf(
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(6),
+                            endDate = LocalDateTime.now().plusHours(12),
+                            name = "Halil Ozercan",
+                            description = "",
+                            color = Y500
+                        ),
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(17),
+                            endDate = LocalDateTime.now().plusHours(27),
+                            name = "Taha Kirca",
+                            description = "",
+                            color = B400
+                        )
+                    )
+                ), CalendarSection(
+                    "Compose Schedule",
+                    events = listOf(
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(6),
+                            endDate = LocalDateTime.now().plusHours(12),
+                            name = "Halil Ozercan",
+                            description = "",
+                            color = Y500
+                        ),
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(17),
+                            endDate = LocalDateTime.now().plusHours(27),
+                            name = "Taha Kirca",
+                            description = "",
+                            color = B400
+                        )
+                    )
+                ), CalendarSection(
+                    "Compose Schedule",
+                    events = listOf(
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(6),
+                            endDate = LocalDateTime.now().plusHours(12),
+                            name = "Halil Ozercan",
+                            description = "",
+                            color = Y500
+                        ),
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(17),
+                            endDate = LocalDateTime.now().plusHours(27),
+                            name = "Taha Kirca",
+                            description = "",
+                            color = B400
+                        )
+                    )
+                ), CalendarSection(
+                    "Compose Schedule",
+                    events = listOf(
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(6),
+                            endDate = LocalDateTime.now().plusHours(12),
+                            name = "Halil Ozercan",
+                            description = "",
+                            color = Y500
+                        ),
+                        CalendarEvent(
+                            startDate = LocalDateTime.now().plusHours(17),
+                            endDate = LocalDateTime.now().plusHours(27),
+                            name = "Taha Kirca",
+                            description = "",
+                            color = B400
+                        )
+                    )
+                )
             ),
-            CalendarEvent(
-              startDate = LocalDateTime.now().plusHours(24),
-              endDate = LocalDateTime.now().plusHours(48),
-              name = "And Ani Calik",
-              description = "",
-              color = G500
-            )
-          )
-        ),
-        CalendarSection(
-          "Compose Schedule",
-          events = listOf(
-            CalendarEvent(
-              startDate = LocalDateTime.now().plusHours(6),
-              endDate = LocalDateTime.now().plusHours(12),
-              name = "Halil Ozercan",
-              description = "",
-              color = Y500
-            ),
-            CalendarEvent(
-              startDate = LocalDateTime.now().plusHours(17),
-              endDate = LocalDateTime.now().plusHours(27),
-              name = "Taha Kirca",
-              description = "",
-              color = B400
-            )
-          )
+            viewSpan = viewSpan.value
         )
-      ),
-      viewSpan = viewSpan.value
-    )
-  }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-  ScheduleCalendarTheme {
-    ScheduleCalendarDemo()
-  }
+    ScheduleCalendarTheme {
+        ScheduleCalendarDemo()
+    }
 }
